@@ -352,3 +352,476 @@ plt.plot(xpoints, y2points, linestyle = 'dotted')
 plt.plot(xpoints, y3points, linestyle = 'dotted')
 plt.grid(visible = True)
 plt.show()
+
+
+
+Summations
+- What is the difference between summation and addition?
+- Addition is done between two arguments whereas summation happens over n elements.
+
+# Add the values in arr1 to the values in arr2:
+import numpy as np
+arr1 = np.array([1, 2, 3])
+arr2 = np.array([1, 2, 3])
+newarr = np.add(arr1, arr2)
+print(newarr)
+# Returns: [2 4 6]
+
+# Sum the values in arr1 and the values in arr2:
+import numpy as np
+arr1 = np.array([1, 2, 3])
+arr2 = np.array([1, 2, 3])
+newarr = np.sum([arr1, arr2])
+print(newarr)
+# Returns: 12
+
+
+Summation Over an Axis
+- If you specify axis=1, NumPy will sum the numbers in each array.
+
+# Perform summation in the following array over 1st axis:
+import numpy as np
+arr1 = np.array([1, 2, 3])
+arr2 = np.array([1, 2, 3])
+newarr = np.sum([arr1, arr2], axis=1)
+print(newarr)
+# Returns: [6 6]
+
+# Moje - Perform summation in the following array over 0 axis:
+import numpy as np
+arr1 = np.array([1, 2, 3])
+arr2 = np.array([1, 2, 3])
+newarr = np.sum([arr1, arr2], axis=0)
+print(newarr)
+# Returns: [2 4 6]
+
+
+Cummulative Sum
+- Cummulative sum means partially adding the elements in array.
+- E.g. The partial sum of [1, 2, 3, 4] would be [1, 1+2, 1+2+3, 1+2+3+4] = [1, 3, 6, 10].
+- Perfom partial sum with the cumsum() function.
+
+# Perform cummulative summation in the following array:
+import numpy as np
+arr = np.array([1, 2, 3])
+newarr = np.cumsum(arr)
+print(newarr)
+# Returns: [1 3 6]
+
+# Perform cummulative summation in the following arrays:
+import numpy as np
+arr1 = np.array([1, 2, 3])
+arr2 = np.array([1, 2, 3])
+newarr = np.cumsum([arr1, arr2])
+print(newarr)
+# Returns: [ 1  3  6  7  9 12]
+
+# Udělá sumář ve sloupcích
+import numpy as np
+arr1 = np.array([1, 2, 3])
+arr2 = np.array([1, 2, 3])
+newarr = np.cumsum([arr1, arr2], axis = 0)
+print(newarr)
+#[[1 2 3]
+# [2 4 6]]
+
+# Udělá sumář v řádcích
+import numpy as np
+arr1 = np.array([1, 2, 3])
+arr2 = np.array([1, 2, 3])
+newarr = np.cumsum([arr1, arr2], axis = 1)
+print(newarr)
+#[[1 3 6]
+# [1 3 6]]
+
+
+Products
+- To find the product of the elements in an array, use the prod() function.
+
+# Find the product of the elements of this array:
+import numpy as np
+arr = np.array([1, 2, 3, 4])
+x = np.prod(arr)
+print(x)
+# Returns: 24 because 1*2*3*4 = 24
+
+
+# Find the product of the elements of two arrays:
+import numpy as np
+arr1 = np.array([1, 2, 3, 4])
+arr2 = np.array([5, 6, 7, 8])
+x = np.prod([arr1, arr2])
+print(x)
+# Returns: 40320 because 1*2*3*4*5*6*7*8 = 40320
+
+
+Product Over an Axis
+- If you specify axis=1, NumPy will return the product of each array.
+- axis=1 udělá produkt v řádcích
+
+# Perform summation in the following array over 1st axis:
+import numpy as np
+arr1 = np.array([1, 2, 3, 4])
+arr2 = np.array([5, 6, 7, 8])
+newarr = np.prod([arr1, arr2], axis=1)
+print(newarr)
+# Returns: [24 1680]
+
+# Moje - Perform summation in the following array over 0st axis:
+import numpy as np
+arr1 = np.array([1, 2, 3, 4])
+arr2 = np.array([5, 6, 7, 8])
+newarr = np.prod([arr1, arr2], axis=0)
+print(newarr)
+# Returns: [ 5 12 21 32]
+
+
+Cummulative Product
+- Cummulative product means taking the product partially.
+- E.g. The partial product of [1, 2, 3, 4] is [1, 1*2, 1*2*3, 1*2*3*4] = [1, 2, 6, 24]
+- Perfom partial sum with the cumprod() function.
+
+# Take cummulative product of all elements for following array:
+import numpy as np
+arr = np.array([5, 6, 7, 8])
+newarr = np.cumprod(arr)
+print(newarr)
+Returns: [5 30 210 1680]
+
+
+# Moje - Perform cummulative product in the following arrays over 1st axis:
+import numpy as np
+arr1 = np.array([1, 2, 3, 4])
+arr2 = np.array([5, 6, 7, 8])
+newarr = np.cumprod([arr1, arr2], axis=1)
+print(newarr)
+#[[   1    2    6   24]
+# [   5   30  210 1680]]
+
+
+# Moje - Perform cummulative product in the following arrays over 0 axis:
+import numpy as np
+arr1 = np.array([1, 2, 3, 4])
+arr2 = np.array([5, 6, 7, 8])
+newarr = np.cumprod([arr1, arr2], axis=0)
+print(newarr)
+#[[ 1  2  3  4]
+# [ 5 12 21 32]]
+
+
+Differences
+- A discrete difference means subtracting two successive elements.
+- E.g. for [1, 2, 3, 4], the discrete difference would be [2-1, 3-2, 4-3] = [1, 1, 1]
+- To find the discrete difference, use the diff() function.
+
+# Compute discrete difference of the following array:
+import numpy as np
+arr = np.array([10, 15, 25, 5])
+newarr = np.diff(arr)
+print(newarr)
+# Returns: [5 10 -20] because 15-10=5, 25-15=10, and 5-25=-20
+
+- We can perform this operation repeatedly by giving parameter n.
+- E.g. for [1, 2, 3, 4], the discrete difference with n = 2 would be [2-1, 3-2, 4-3] = [1, 1, 1] , then, since n=2, we will do it once more, with the new result: [1-1, 1-1] = [0, 0]
+
+# Compute discrete difference of the following array twice:
+import numpy as np
+arr = np.array([10, 15, 25, 5])
+newarr = np.diff(arr, n=2)
+print(newarr)
+# Returns: [5 -30] because: 15-10=5, 25-15=10, and 5-25=-20 AND 10-5=5 and -20-10=-30
+
+
+
+
+Finding LCM (Lowest Common Multiple)
+-The Lowest Common Multiple is the smallest number that is a common multiple of two numbers.
+
+# Find the LCM of the following two numbers:
+import numpy as np
+num1 = 4
+num2 = 6
+x = np.lcm(num1, num2)
+print(x)
+# Returns: 12 because that is the lowest common multiple of both numbers (4*3=12 and 6*2=12).
+
+
+Finding LCM in Arrays
+- To find the Lowest Common Multiple of all values in an array, you can use the reduce() method.
+- The reduce() method will use the ufunc, in this case the lcm() function, on each element, and reduce the array by one dimension.
+
+# Find the LCM of the values of the following array:
+import numpy as np
+arr = np.array([3, 6, 9])
+x = np.lcm.reduce(arr)
+print(x)
+# Returns: 18 because that is the lowest common multiple of all three numbers (3*6=18, 6*3=18 and 9*2=18).
+
+
+# Find the LCM of all values of an array where the array contains all integers from 1 to 10:
+import numpy as np
+arr = np.arange(1, 11)
+x = np.lcm.reduce(arr)
+print(x)
+# Returns: 2520
+
+# Moje: udělá LCM po sloupcich:
+import numpy as np
+arr = np.stack([np.arange(1, 11), np.arange(1, 11)])
+x = np.lcm.reduce(arr, axis = 0)
+print(arr)
+#[[ 1  2  3  4  5  6  7  8  9 10]
+# [ 1  2  3  4  5  6  7  8  9 10]]
+print(x)
+#[ 1  2  3  4  5  6  7  8  9 10]
+
+# Moje: udělá LCM po řádcích:
+import numpy as np
+arr = np.stack([np.arange(1, 11), np.arange(1, 11)])
+x = np.lcm.reduce(arr, axis = 1)
+print(arr)
+#[[ 1  2  3  4  5  6  7  8  9 10]
+# [ 1  2  3  4  5  6  7  8  9 10]]
+print(x)
+#[2520 2520]
+
+
+
+Finding GCD (Greatest Common Denominator)
+- The GCD (Greatest Common Denominator), also known as HCF (Highest Common Factor) is the biggest number that is a common factor of both of the numbers.
+
+# Find the HCF of the following two numbers:
+import numpy as np
+num1 = 6
+num2 = 9
+x = np.gcd(num1, num2)
+print(x)
+# Returns: 3 because that is the highest number both numbers can be divided by (6/3=2 and 9/3=3).
+
+
+Finding GCD in Arrays
+- To find the Highest Common Factor of all values in an array, you can use the reduce() method.
+- The reduce() method will use the ufunc, in this case the gcd() function, on each element, and reduce the array by one dimension.
+
+# Find the GCD for all of the numbers in the following array:
+import numpy as np
+arr = np.array([20, 8, 32, 36, 16])
+x = np.gcd.reduce(arr)
+print(x)
+# Returns: 4 because that is the highest number all values can be divided by.
+
+# Moje: udělá GCD po sloupcich:
+import numpy as np
+arr = np.stack([np.arange(6, 11, 2), np.arange(6, 11, 2)])
+x = np.gcd.reduce(arr, axis = 0)
+print(arr)
+#[[ 6  8 10]
+# [ 6  8 10]]
+print(x)
+#[ 6  8 10]
+
+# Moje: udělá GCD po řádcích:
+import numpy as np
+arr = np.stack([np.arange(6, 11, 2), np.arange(6, 11, 2)])
+x = np.gcd.reduce(arr, axis = 1)
+print(arr)
+#[[ 6  8 10]
+# [ 6  8 10]]
+print(x)
+#[2 2]
+
+
+Trigonometric Functions
+- NumPy provides the ufuncs sin(), cos() and tan() that take values in radians and produce the corresponding sin, cos and tan values.
+
+# Find sine value of PI/2:
+import numpy as np
+x = np.sin(np.pi/2)
+print(x)
+
+# Find sine values for all of the values in arr:
+import numpy as np
+arr = np.array([np.pi/2, np.pi/3, np.pi/4, np.pi/5])
+x = np.sin(arr)
+print(x)
+
+
+Convert Degrees Into Radians
+- By default all of the trigonometric functions take radians as parameters but we can convert radians to degrees and vice versa as well in NumPy.
+- Note: radians values are pi/180 * degree_values.
+
+# Convert all of the values in following array arr to radians:
+import numpy as np
+arr = np.array([90, 180, 270, 360])
+x = np.deg2rad(arr)
+print(x)
+
+Radians to Degrees
+
+# Convert all of the values in following array arr to degrees:
+import numpy as np
+arr = np.array([np.pi/2, np.pi, 1.5*np.pi, 2*np.pi])
+x = np.rad2deg(arr)
+print(x)
+
+Finding Angles
+- Finding angles from values of sine, cos, tan. E.g. sin, cos and tan inverse (arcsin, arccos, arctan).
+- NumPy provides ufuncs arcsin(), arccos() and arctan() that produce radian values for corresponding sin, cos and tan values given.
+
+# Find the angle of 1.0:
+import numpy as np
+x = np.arcsin(1.0)
+print(x)
+
+# Moje ve stupnich:
+import numpy as np
+x = np.rad2deg(np.arcsin(1.0))
+print(x)
+
+
+Angles of Each Value in Arrays
+
+# Find the angle for all of the sine values in the array
+import numpy as np
+arr = np.array([1, -1, 0.1])
+x = np.arcsin(arr)
+print(x)
+
+# Moje ve stupnich:
+import numpy as np
+arr = np.array([1, -1, 0.1])
+x = np.rad2deg(np.arcsin(arr))
+print(x)
+
+
+Hypotenues
+- Finding hypotenues using pythagoras theorem in NumPy.
+- NumPy provides the hypot() function that takes the base and perpendicular values and produces hypotenues based on pythagoras theorem.
+- This mathematical function helps user to calculate hypotenuse for the right angled triangle, given its side and perpendicular. Result is equivalent to sqrt(x1**2 + x2**2), element-wise.
+- Given the “legs” of a right triangle, return its hypotenuse.
+
+# Find the hypotenues for 4 base and 3 perpendicular:
+import numpy as np
+base = 3
+perp = 4
+x = np.hypot(base, perp)
+print(x)
+
+There are several Pythagorean triples which are well-known, including those with sides in the ratios:
+- 3:4:5
+- 5:12:13
+- 8:15:17
+- 7:24:25
+- 9:40:41
+
+# Muj priklad - Find the hypotenues for array base and array perpendicular:
+import numpy as np
+base = [3,5]
+perp = [4,12]
+x = np.hypot(base, perp)
+print(x)
+#[ 5. 13.]
+
+
+
+Hyperbolic Functions
+- NumPy provides the ufuncs sinh(), cosh() and tanh() that take values in radians and produce the corresponding sinh, cosh and tanh values..
+
+# Find sinh value of PI/2:
+import numpy as np
+x = np.sinh(np.pi/2)
+print(x)
+
+
+# Find cosh values for all of the values in arr:
+import numpy as np
+arr = np.array([np.pi/2, np.pi/3, np.pi/4, np.pi/5])
+x = np.cosh(arr)
+print(x)
+
+
+Finding Angles
+- Finding angles from values of hyperbolic sine, cos, tan. E.g. sinh, cosh and tanh inverse (arcsinh, arccosh, arctanh).
+- Numpy provides ufuncs arcsinh(), arccosh() and arctanh() that produce radian values for corresponding sinh, cosh and tanh values given.
+
+# Find the angle of 1.0:
+import numpy as np
+x = np.arcsinh(1.0)
+print(x)
+
+
+Angles of Each Value in Arrays
+
+# Find the angle for all of the tanh values in array:
+import numpy as np
+arr = np.array([0.1, 0.2, 0.5])
+x = np.arctanh(arr)
+print(x)
+
+
+What is a Set
+- A set in mathematics is a collection of unique elements.
+- Sets are used for operations involving frequent intersection, union and difference operations.
+
+Create Sets in NumPy
+- We can use NumPy's unique() method to find unique elements from any array. E.g. create a set array, but remember that the set arrays should only be 1-D arrays.
+
+# Convert following array with repeated elements to a set:
+import numpy as np
+arr = np.array([1, 1, 1, 2, 3, 4, 5, 5, 6, 7])
+x = np.unique(arr)
+print(x)
+#[1 2 3 4 5 6 7]
+
+Finding Union
+- To find the unique values of two arrays, use the union1d() method.
+
+# Find union of the following two set arrays:
+import numpy as np
+arr1 = np.array([1, 2, 3, 4])
+arr2 = np.array([3, 4, 5, 6])
+newarr = np.union1d(arr1, arr2)
+print(newarr)
+#[1 2 3 4 5 6]
+
+
+Finding Intersection
+- To find only the values that are present in both arrays, use the intersect1d() method.
+
+# Find intersection of the following two set arrays:
+import numpy as np
+arr1 = np.array([1, 2, 3, 4])
+arr2 = np.array([3, 4, 5, 6])
+newarr = np.intersect1d(arr1, arr2, assume_unique=True)
+print(newarr)
+#[3 4]
+
+Note: the intersect1d() method takes an optional argument assume_unique, which if set to True can speed up computation. It should always be set to True when dealing with sets.
+
+
+Finding Difference
+- To find only the values in the first set that is NOT present in the seconds set, use the setdiff1d() method.
+
+# Find the difference of the set1 from set2:
+import numpy as np
+set1 = np.array([1, 2, 3, 4])
+set2 = np.array([3, 4, 5, 6])
+newarr = np.setdiff1d(set1, set2, assume_unique=True)
+print(newarr)
+#[1 2]
+
+Note: the setdiff1d() method takes an optional argument assume_unique, which if set to True can speed up computation. It should always be set to True when dealing with sets.
+
+
+Finding Symmetric Difference
+- To find only the values that are NOT present in BOTH sets, use the setxor1d() method.
+
+# Find the symmetric difference of the set1 and set2:
+import numpy as np
+set1 = np.array([1, 2, 3, 4])
+set2 = np.array([3, 4, 5, 6])
+newarr = np.setxor1d(set1, set2, assume_unique=True)
+print(newarr)
+#[1 2 5 6]
+
+Note: the setxor1d() method takes an optional argument assume_unique, which if set to True can speed up computation. It should always be set to True when dealing with sets.
