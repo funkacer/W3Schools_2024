@@ -1,0 +1,349 @@
+# try 1
+
+import pandas as pd
+
+print(pd.__version__)
+
+import pandas as pd
+
+a = [1, 7, 2]
+
+myvar = pd.Series(a)
+
+print(myvar)
+print(myvar[0])
+
+myvar = pd.Series(a, index = ["x", "y", "z"])
+
+print(myvar)
+print(myvar[1])
+print(myvar["y"])
+
+calories = {"day1": 420, "day2": 380, "day3": 390}
+
+myvar = pd.Series(calories)
+
+print(myvar)
+
+myvar = pd.Series(calories, index = ["day1", "day2"])
+
+print(myvar)
+print(myvar.__class__)
+
+
+data = {
+  "calories": [420, 380, 390],
+  "duration": [50, 40, 45]
+}
+
+#load data into a DataFrame object:
+df = pd.DataFrame(data)
+
+print(df)
+print(df.__class__)
+
+#refer to the row index:
+print(df.loc[1])
+
+# with dataFrame with index
+df = pd.DataFrame(data, index = ["day1", "day2", "day3"])
+
+print(df)
+#refer to the named index:
+print(df.loc["day2"])
+
+
+# try 2
+
+import pandas as pd
+
+# In my system the number is 60, which means that if the DataFrame contains more than 60 rows, the print(df) statement will return only the headers and the first and last 5 rows
+#print(pd.options.display.max_rows)
+
+pd.options.display.max_rows = 9999
+
+df = pd.read_csv('data.csv')
+
+print(df)
+
+# Tip: use to_string() to print the entire DataFrame. 
+#print(df.to_string())
+
+
+# try 3
+
+import pandas as pd
+
+df = pd.read_json('data.json')
+
+print(df.to_string())
+
+
+
+# try 4
+
+import pandas as pd
+
+# JSON = Python Dictionary
+# JSON objects have the same format as Python dictionaries.
+
+data = {
+  "Duration":{
+    "0":60,
+    "1":60,
+    "2":60,
+    "3":45,
+    "4":45,
+    "5":60
+  },
+  "Pulse":{
+    "0":110,
+    "1":117,
+    "2":103,
+    "3":109,
+    "4":117,
+    "5":102
+  },
+  "Maxpulse":{
+    "0":130,
+    "1":145,
+    "2":135,
+    "3":175,
+    "4":148,
+    "5":127
+  },
+  "Calories":{
+    "0":409.1,
+    "1":479.0,
+    "2":340.0,
+    "3":282.4,
+    "4":406.0,
+    "5":300.5
+  }
+}
+
+df = pd.DataFrame(data)
+
+print(df)
+
+print(df.head()) #5 rows
+print(df.head(10))
+print(df.tail()) #5 rows
+print(df.tail(10))
+
+print(df.info())
+
+
+
+# try 5 - df.dropna()
+
+import pandas as pd
+
+df = pd.read_csv('data.csv')
+
+new_df = df.dropna()
+
+print(new_df.to_string())
+
+#Notice in the result that some rows have been removed (row 18, 22 and 28).
+
+#These rows had cells with empty values.
+
+# !!! Note: By default, the dropna() method returns a new DataFrame, and will not change the original. !!!
+
+
+
+# try 6 - df.dropna(inplace = True)
+
+import pandas as pd
+
+df = pd.read_csv('data.csv')
+
+df.dropna(inplace = True)
+
+print(df.to_string())
+
+#Notice in the result that some rows have been removed (row 18, 22 and 28).
+
+#These rows had cells with empty values.
+
+
+
+# try 7 - replace empty values
+
+import pandas as pd
+
+df = pd.read_csv('data.csv')
+
+df.fillna(130, inplace = True)
+
+print(df.to_string())
+
+#Notice in the result: empty cells got the value 130 (in row 18, 22 and 28).
+
+
+df = pd.read_csv('data.csv')
+
+df["Calories"].fillna(130, inplace = True)
+
+print(df.to_string())
+
+#Notice in the result: empty cells got the value 130 (in row 18 and 28).
+
+
+# Mean = the average value (the sum of all values divided by number of values).
+
+df = pd.read_csv('data.csv')
+
+x = df["Calories"].mean()
+print(x)
+
+df["Calories"].fillna(x, inplace = True)
+
+print(df.to_string())
+
+#Notice in the result: empty cells got the value 304.68 (in row 18 and 28).
+
+
+
+# Median = the value in the middle, after you have sorted all values ascending.
+
+df = pd.read_csv('data.csv')
+
+x = df["Calories"].median()
+print(x)
+
+df["Calories"].fillna(x, inplace = True)
+
+print(df.to_string())
+
+#Notice in the result: empty cells got the value 291.2 (in row 18 and 28).
+
+
+# Mode = the value that appears most frequently.
+
+df = pd.read_csv('data.csv')
+
+x = df["Calories"].mode()
+print(x)
+print(x.__class__)
+
+# mode returns series, select only first value
+x = df["Calories"].mode()[0]
+print(x)
+
+df["Calories"].fillna(x, inplace = True)
+
+print(df.to_string())
+
+#Notice in the result: empty cells got the value 300.0 (in row 18 and 28).
+
+
+# Convert to date:
+
+df = pd.read_csv('data.csv')
+
+df['Date'] = pd.to_datetime(df['Date'])
+
+print(df.to_string())
+
+
+# The result from the converting in the example above gave us a NaT value, which can be handled as a NULL value, and we can remove the row by using the dropna() method.
+
+df.dropna(subset=['Date'], inplace = True)
+#df.dropna(subset=['Date', 'Calories'], inplace = True)
+
+print(df.to_string())
+
+#Notice in the result: empty cells were removed as a whole row (in row 22).
+
+
+# One way to fix wrong values is to replace them with something else.
+
+df = pd.read_csv('data.csv')
+
+df.loc[7,'Duration'] = 45
+
+print(df.to_string())
+
+#Notice in the result: wrong value 450 was replaced with 45 (in row 7, column 'Duration').
+
+
+# To replace wrong data for larger data sets you can create some rules, e.g. set some boundaries for legal values, and replace any values that are outside of the boundaries.
+
+df = pd.read_csv('data.csv')
+
+for x in df.index:
+  if df.loc[x, "Duration"] > 120:
+    df.loc[x, "Duration"] = 120
+
+print(df.to_string())
+
+#Notice in the result: all wrong values > 120 were replaced with 120 (in row 7, column 'Duration').
+
+
+# Another way of handling wrong data is to remove the rows that contains wrong data.
+# This way you do not have to find out what to replace them with, and there is a good chance you do not need them to do your analyses.
+
+df = pd.read_csv('data.csv')
+
+for x in df.index:
+  if df.loc[x, "Duration"] > 120:
+    df.drop(x, inplace = True)
+
+#remember to include the 'inplace = True' argument to make the changes in the original DataFrame object instead of returning a copy
+
+print(df.to_string())
+
+
+# Duplicate rows are rows that have been registered more than one time.
+
+df = pd.read_csv('data.csv')
+
+print(df.duplicated())
+
+#Notice in the result: duplicated values are True (in row 12).
+
+#duplicated row only
+print(df[df.duplicated()])
+
+#index of duplicated row
+print(df[df.duplicated()].index)
+
+
+
+# Deduplicate duplicate rows
+
+df = pd.read_csv('data.csv')
+
+df.drop_duplicates(inplace = True)
+
+print(df.to_string())
+
+#Notice that row 12 has been removed from the result
+
+
+
+# try 8
+
+# create column with index
+df["ID"] = df.index
+
+
+# create column with rowid
+
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv('data.csv')
+
+df.drop_duplicates(inplace = True)
+
+print(df.index.size)
+
+#Notice that row 12 has been removed from the result
+
+df["ID0"] = np.array(np.linspace(0, df.index.size - 1,df.index.size), np.int64)
+df["ID1"] = np.array(np.linspace(1, df.index.size, df.index.size), np.int64)
+
+print(df.to_string())

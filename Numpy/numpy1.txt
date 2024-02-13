@@ -1,0 +1,1509 @@
+
+# Create a NumPy ndarray Object
+
+# NumPy is used to work with arrays. The array object in NumPy is called ndarray.
+# We can create a NumPy ndarray object by using the array() function.
+
+# try 0
+
+import numpy as np
+
+print(np.__version__)
+
+
+
+# try 1
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5])
+
+print(arr)
+
+
+
+# try 2
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5])
+
+print(arr)
+
+print(type(arr))
+
+# type(): This built-in Python function tells us the type of the object passed to it. Like in above code it shows that arr is numpy.ndarray type.
+
+
+# try 3 - Use a tuple to create a NumPy array:
+
+import numpy as np
+
+arr = np.array((1, 2, 3, 4, 5))
+
+print(arr)
+
+
+# Dimensions in Arrays
+
+# A dimension in arrays is one level of array depth (nested arrays).
+# nested array: are arrays that have arrays as their elements.
+
+
+# try 4 - Create a 0-D array with value 42
+
+import numpy as np
+
+arr = np.array(42)
+
+print(arr)
+
+
+# try 5 - Create a 1-D array containing the values 1,2,3,4,5:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5])
+
+print(arr)
+
+
+# Note: NumPy has a whole sub module dedicated towards matrix operations called numpy.mat
+
+
+# try 6 - Create a 2-D array containing two arrays with the values 1,2,3 and 4,5,6:
+
+import numpy as np
+
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+
+print(arr)
+
+
+# try 7 - Create a 3-D array with two 2-D arrays, both containing two arrays with the values 1,2,3 and 4,5,6:
+
+import numpy as np
+
+arr = np.array([[[1, 2, 3], [4, 5, 6]], [[1, 2, 3], [4, 5, 6]]])
+
+print(arr)
+
+
+# Check Number of Dimensions?
+# NumPy Arrays provides the ndim attribute that returns an integer that tells us how many dimensions the array have.
+
+# try 8 - Check how many dimensions the arrays have:
+
+import numpy as np
+
+a = np.array(42)
+b = np.array([1, 2, 3, 4, 5])
+c = np.array([[1, 2, 3], [4, 5, 6]])
+d = np.array([[[1, 2, 3], [4, 5, 6]], [[1, 2, 3], [4, 5, 6]]])
+
+print(a.ndim)
+print(b.ndim)
+print(c.ndim)
+print(d.ndim)
+
+
+
+# Higher Dimensional Arrays
+
+# An array can have any number of dimensions.
+# When the array is created, you can define the number of dimensions by using the ndmin argument.
+
+# try 9 - Create an array with 5 dimensions and verify that it has 5 dimensions:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4], ndmin=5)
+
+print(arr)
+print('number of dimensions :', arr.ndim)
+
+
+
+# Array Indexing
+
+
+# try 10 - Get the first element from the following array:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4])
+
+print(arr[0])
+
+
+# try 11 - Get the second element from the following array.
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4])
+
+print(arr[1])
+
+
+# try 12 - import numpy as np
+
+arr = np.array([1, 2, 3, 4])
+
+print(arr[2] + arr[3])
+
+
+# try 13 - Access the element on the first row, second column:
+
+import numpy as np
+
+arr = np.array([[1,2,3,4,5], [6,7,8,9,10]])
+
+print('2nd element on 1st row: ', arr[0, 1])
+
+
+# try 14 - Access the element on the 2nd row, 5th column:
+
+import numpy as np
+
+arr = np.array([[1,2,3,4,5], [6,7,8,9,10]])
+
+print('5th element on 2nd row: ', arr[1, 4])
+
+
+
+# try 15 - Access the third element of the second array of the first array:
+
+import numpy as np
+
+arr = np.array([[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]])
+
+print(arr[0, 1, 2])
+
+
+
+# try 16 - Print the last element from the 2nd dim:
+
+import numpy as np
+
+arr = np.array([[1,2,3,4,5], [6,7,8,9,10]])
+
+print('Last element from 2nd dim: ', arr[1, -1])
+
+
+
+
+# Array Slicing
+
+
+# try 17 - Slice elements from index 1 to index 5 from the following array:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5, 6, 7])
+
+print(arr[1:5])
+
+
+# Note: The result includes the start index, but excludes the end index.
+
+
+# try 18 - Slice elements from index 4 to the end of the array:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5, 6, 7])
+
+print(arr[4:])
+
+
+# try 19 - Slice elements from the beginning to index 4 (not included):
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5, 6, 7])
+
+print(arr[:4])
+
+
+# try 20 - Slice from the index 3 from the end to index 1 from the end:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5, 6, 7])
+
+print(arr[-3:-1])
+
+
+# try 21 - Return every other element from index 1 to index 5:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5, 6, 7])
+
+print(arr[1:5:2])
+
+
+
+# try 22 - Return every other element from the entire array:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5, 6, 7])
+
+print(arr[::2])
+
+
+# try 23 - From the second element, slice elements from index 1 to index 4 (not included):
+
+import numpy as np
+
+arr = np.array([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]])
+
+print(arr[1, 1:4])
+
+
+
+# Note: Remember that second element has index 1.
+
+
+# try 24 - From both elements, return index 2:
+
+import numpy as np
+
+arr = np.array([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]])
+
+print(arr[0:2, 2])
+
+
+# try 25 - From both elements, slice index 1 to index 4 (not included), this will return a 2-D array:
+
+import numpy as np
+
+arr = np.array([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]])
+
+print(arr[0:2, 1:4])
+
+
+
+# try 26 - different results!!!
+
+
+import numpy as np
+
+arr = np.array([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]])
+
+print(arr[0:2, 2])
+
+# vs - this will return a 2-D array
+
+import numpy as np
+
+arr = np.array([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]])
+
+print(arr[0:2, 2:3])
+
+
+# try 27- different results!!!
+
+import numpy as np
+
+arr = np.array([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15]])
+
+print(arr[1]) # 1-D array
+
+
+import numpy as np
+
+arr = np.array([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15]])
+
+print(arr[1,:]) # 1-D array
+
+
+import numpy as np
+
+arr = np.array([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15]])
+
+print(arr[1,2:3]) # 1-D array
+
+
+import numpy as np
+
+arr = np.array([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15]])
+
+print(arr[1:, 2]) # 1-D array
+
+
+
+import numpy as np
+
+arr = np.array([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15]])
+
+print(arr[1:]) # 2-D array
+
+# in fact, it is the same as:
+
+import numpy as np
+
+arr = np.array([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15]])
+
+print(arr[1:,:]) # 2-D array
+
+
+import numpy as np
+
+arr = np.array([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15]])
+
+print(arr[1:, 2:3]) # 2-D array
+
+
+# Data Types in NumPy
+
+Below is a list of all data types in NumPy and the characters used to represent them.
+
+i - integer
+b - boolean
+u - unsigned integer
+f - float
+c - complex float
+m - timedelta
+M - datetime
+O - object
+S - string
+U - unicode string
+V - fixed chunk of memory for other type ( void )
+
+
+# try 28 - Get the data type of an array object:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4])
+
+print(arr.dtype)
+
+
+import numpy as np
+
+arr = np.array(['apple', 'banana', 'cherry'])
+
+print(arr.dtype)
+
+
+
+# try 29 - Create an array with data type string:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4], dtype='S')
+
+print(arr)
+print(arr.dtype)
+
+
+import numpy as np
+
+arr = np.array([1, 2, 3, "č"], dtype='S') # nejde
+
+print(arr)
+print(arr.dtype)
+
+
+import numpy as np
+
+arr = np.array([1, 2, 3, "c"], dtype='S') # jde
+
+print(arr)
+print(arr.dtype)
+
+import numpy as np
+
+arr = np.array([1, 2, 3, "č"], dtype='U') # jde
+
+print(arr)
+print(arr.dtype)
+
+
+# For i, u, f, S and U we can define size as well.
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4], dtype='i4')
+
+print(arr)
+print(arr.dtype)
+
+
+import numpy as np
+
+arr = np.array([1, 2, 3, "čšř"], dtype='U2') # uloží jen "čš"
+
+print(arr)
+print(arr.dtype)
+
+
+# ValueError: In Python ValueError is raised when the type of passed argument to a function is unexpected/incorrect.
+
+import numpy as np
+
+arr = np.array(['a', '2', '3'], dtype='i') # ValueError: invalid literal for int() with base 10: 'a'
+
+
+
+
+# Converting Data Type on Existing Arrays
+
+# The astype() function creates a copy of the array, and allows you to specify the data type as a parameter.
+
+
+
+# try 30 - Change data type from float to integer by using 'i' as parameter value:
+
+import numpy as np
+
+arr = np.array([1.1, 2.1, 3.1])
+
+newarr = arr.astype('i')
+
+print(newarr)
+print(newarr.dtype)
+
+
+# try 31 - Change data type from float to integer by using int as parameter value:
+
+import numpy as np
+
+arr = np.array([1.1, 2.1, 3.1])
+
+newarr = arr.astype(int)
+
+print(newarr)
+print(newarr.dtype)
+
+
+# try 32 - Change data type from integer to boolean:
+
+import numpy as np
+
+arr = np.array([1, 0, 3])
+
+newarr = arr.astype(bool)
+
+print(newarr)
+print(newarr.dtype)
+
+
+# try 33 - moje date
+
+import numpy as np
+
+arr = np.array(["2024-12-31", "2024-01-19"], dtype='M')
+# arr = np.array(["2024-12-31", "2024-01-19", np.datetime64('today')], dtype='M')
+
+print(arr)
+print(arr.dtype)
+
+print(arr[0] - np.datetime64('today'))
+print(arr[0] - arr[1])
+
+
+
+
+# NumPy Array Copy vs View
+
+# The Difference Between Copy and View
+#  The main difference between a copy and a view of an array is that the copy is a new array, and the view is just a view of the original array.
+#  The copy owns the data and any changes made to the copy will not affect original array, and any changes made to the original array will not affect the copy.
+#  The view does not own the data and any changes made to the view will affect the original array, and any changes made to the original array will affect the view.
+
+# try 34 - Make a copy, change the original array, and display both arrays:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5])
+x = arr.copy()
+arr[0] = 42
+
+print(arr)
+print(x)
+
+# The copy SHOULD NOT be affected by the changes made to the original array.
+
+
+# try 35 - Make a view, change the original array, and display both arrays:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5])
+x = arr.view()
+arr[0] = 42
+
+print(arr)
+print(x)
+
+# The view SHOULD be affected by the changes made to the original array.
+
+
+# try 36 - Make a view, change the view, and display both arrays:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5])
+x = arr.view()
+x[0] = 31
+
+print(arr)
+print(x)
+
+# The original array SHOULD be affected by the changes made to the view. !!!
+
+
+
+
+# Check if Array Owns its Data
+
+# As mentioned above, copies owns the data, and views does not own the data, but how can we check this?
+#  Every NumPy array has the attribute base that returns None if the array owns the data.
+#  Otherwise, the base  attribute refers to the original object.
+
+# try 36 - Print the value of the base attribute to check if an array owns it's data or not:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5])
+
+x = arr.copy()
+y = arr.view()
+
+print(x.base)
+print(y.base)
+
+# more examples
+# https://numpy.org/doc/stable/reference/generated/numpy.ndarray.base.html
+
+# The base of an array that owns its memory is None:
+x = np.array([1,2,3,4])
+x.base is None
+# True
+
+# Slicing creates a view, whose memory is shared with x:
+y = x[2:]
+y.base is x
+# True
+
+# try 37 - To je hardcore:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5])
+x = arr[2:]
+x[2] = 31
+
+print(arr)
+print(x)
+
+# [ 1  2  3  4 31]
+# [ 3  4 31]
+
+
+
+
+# Shape of an Array
+
+# The shape of an array is the number of elements in each dimension.
+# NumPy arrays have an attribute called shape that returns a tuple with each index having the number of corresponding elements.
+
+# try 38 - Print the shape of a 2-D array:
+
+import numpy as np
+
+arr = np.array([[1, 2, 3, 4], [5, 6, 7, 8]])
+
+print(arr.shape)
+
+# The example above returns (2, 4), which means that the array has 2 dimensions, where the first dimension has 2 elements and the second has 4.
+
+
+# try 39 - Create an array with 5 dimensions using ndmin using a vector with values 1,2,3,4 and verify that last dimension has value 4:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4], ndmin=5)
+
+print(arr)
+print('shape of array :', arr.shape)
+
+# [[[[[1 2 3 4]]]]]
+# shape of array : (1, 1, 1, 1, 4)
+
+# What does the shape tuple represent?
+#  Integers at every index tells about the number of elements the corresponding dimension has.
+#  In the example above at index-4 we have value 4, so we can say that 5th ( 4 + 1 th) dimension has 4 elements.
+
+
+
+
+# Reshaping arrays
+
+# Reshaping means changing the shape of an array.
+# The shape of an array is the number of elements in each dimension.
+# By reshaping we can add or remove dimensions or change number of elements in each dimension.
+
+# Reshape From 1-D to 2-D
+# try 40 - Convert the following 1-D array with 12 elements into a 2-D array.
+#  The outermost dimension will have 4 arrays, each with 3 elements:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+
+newarr = arr.reshape(4, 3)
+
+print(newarr)
+#[[ 1  2  3]
+# [ 4  5  6]
+# [ 7  8  9]
+# [10 11 12]]
+
+print(newarr.shape)
+#(4, 3)
+
+print(newarr.ndim)
+#2
+
+
+# Reshape From 1-D to 3-D
+
+# try 40 - Convert the following 1-D array with 12 elements into a 3-D array.
+# The outermost dimension will have 2 arrays that contains 3 arrays, each with 2 elements:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+
+newarr = arr.reshape(2, 3, 2)
+
+print(newarr)
+#[[[ 1  2]
+#  [ 3  4]
+#  [ 5  6]]
+#
+# [[ 7  8]
+#  [ 9 10]
+#  [11 12]]]
+
+
+
+# try 42 - muj pokus - Reshape From 1-D to 3-D
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24])
+
+newarr = arr.reshape(2, 4, 3)
+
+print(newarr)
+
+print(newarr.shape)
+print(newarr.ndim)
+
+
+
+# Iterating Arrays
+
+# Iterating means going through elements one by one.
+#  As we deal with multi-dimensional arrays in numpy, we can do this using basic for loop of python.
+#  If we iterate on a 1-D array it will go through each element one by one.
+
+# try 43 - Iterate on the elements of the following 1-D array:
+
+import numpy as np
+
+arr = np.array([1, 2, 3])
+
+for x in arr:
+  print(x)
+
+
+
+# try 44 - Iterate on the elements of the following 2-D array:
+
+import numpy as np
+
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+
+for x in arr:
+  print(x)
+
+# If we iterate on a n-D array it will go through n-1th dimension one by one.
+
+
+# To return the actual values, the scalars, we have to iterate the arrays in each dimension.
+
+# try 45 - Iterate on each scalar element of the 2-D array:
+
+import numpy as np
+
+arr = np.array([[1, 2, 3], [4, 5, 6]])
+
+for x in arr:
+  for y in x:
+    print(y)
+
+
+# try 46 - Muj pokus:
+import numpy as np
+
+arr = np.array([[1, 2, 3, 4], [5, 6, 7, 8]])
+arr = arr.reshape(2,2,2)
+arr1 = arr.reshape(8)
+print(arr)
+print(arr1)
+for x in arr1:
+   print(x)
+
+
+# Joining NumPy Arrays
+
+
+# Joining means putting contents of two or more arrays in a single array.
+# In SQL we join tables based on a key, whereas in NumPy we join arrays by axes.
+# We pass a sequence of arrays that we want to join to the concatenate() function, along with the axis. If axis is not explicitly passed, it is taken as 0.
+
+# np.concatenate asi nezmeni ndim ???
+
+# try 47 - Join two arrays
+
+import numpy as np
+
+arr1 = np.array([1, 2, 3])
+
+arr2 = np.array([4, 5, 6])
+
+arr = np.concatenate((arr1, arr2))
+
+print(arr)
+
+
+# try 48 - Join two 2-D arrays along rows (axis=1):
+
+import numpy as np
+
+arr1 = np.array([[1, 2], [3, 4]])
+
+arr2 = np.array([[5, 6], [7, 8]])
+
+arr = np.concatenate((arr1, arr2), axis=1)
+# vs arr = np.concatenate((arr1, arr2), axis=0)
+#[[1 2]
+# [3 4]
+# [5 6]
+# [7 8]]
+
+print(arr)
+#[[1 2 5 6]
+# [3 4 7 8]]
+
+
+# Joining Arrays Using Stack Functions
+
+# Stacking is same as concatenation, the only difference is that stacking is done along a new axis.
+# We can concatenate two 1-D arrays along the second axis which would result in putting them one over the other, ie. stacking.
+# We pass a sequence of arrays that we want to join to the stack() method along with the axis. If axis is not explicitly passed it is taken as 0.
+
+# np.stack asi zvetsi pocet ndim o 1 ???
+
+# try 49 - Example (nachápu):
+
+import numpy as np
+
+arr1 = np.array([1, 2, 3])
+
+arr2 = np.array([4, 5, 6])
+
+arr = np.stack((arr1, arr2), axis=1)
+
+print(arr)
+
+
+# try 50 - Muj pokus:
+
+import numpy as np
+
+arr1 = np.array([1, 2, 3])
+
+arr2 = np.array([4, 5, 6])
+
+arr = np.stack((arr1, arr2), axis=0)
+# vs arr = np.concatenate((arr1, arr2), axis=0)
+
+print(arr)
+
+
+# Stacking Along Rows
+
+# NumPy provides a helper function: hstack() to stack along rows.
+
+# try 51 - Example:
+
+import numpy as np
+
+arr1 = np.array([1, 2, 3])
+
+arr2 = np.array([4, 5, 6])
+
+arr = np.hstack((arr1, arr2))
+
+print(arr)
+
+
+# try 52 - muj Example Dim 2:
+
+import numpy as np
+
+arr1 = np.array([[1, 2, 3], [4, 5, 6]])
+
+arr2 = np.array([[7, 8, 9], [10, 11, 12]])
+
+arr = np.hstack((arr1, arr2))
+
+print(arr)
+
+
+# try 53 - muj Example Dim 3:
+
+import numpy as np
+
+arr1 = np.array([[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]])
+
+arr2 = np.array([[[101, 102, 103], [104, 105, 106]], [[107, 108, 109], [110, 111, 112]]])
+
+arr = np.hstack((arr1, arr2))
+
+print(arr)
+
+
+# Stacking Along Columns
+
+# NumPy provides a helper function: vstack()  to stack along columns.
+
+# try 54 - Example:
+
+import numpy as np
+
+arr1 = np.array([1, 2, 3])
+
+arr2 = np.array([4, 5, 6])
+
+arr = np.vstack((arr1, arr2))
+
+print(arr)
+
+
+# try 55 - muj Example Dim 2:
+
+import numpy as np
+
+arr1 = np.array([[1, 2, 3], [4, 5, 6]])
+
+arr2 = np.array([[7, 8, 9], [10, 11, 12]])
+
+arr = np.vstack((arr1, arr2))
+
+print(arr)
+
+
+# try 56 - muj Example Dim 3:
+
+import numpy as np
+
+arr1 = np.array([[[1, 2, 3], [4, 5, 6]], [[7, 8, 9], [10, 11, 12]]])
+
+arr2 = np.array([[[101, 102, 103], [104, 105, 106]], [[107, 108, 109], [110, 111, 112]]])
+
+arr = np.vstack((arr1, arr2))
+
+print(arr)
+
+
+
+# Stacking Along Height (depth)
+
+# NumPy provides a helper function: dstack() to stack along height, which is the same as depth.
+
+
+# try 57 - Example:
+
+import numpy as np
+
+arr1 = np.array([1, 2, 3])
+
+arr2 = np.array([4, 5, 6])
+
+arr = np.dstack((arr1, arr2))
+
+print(arr)
+
+
+
+# Splitting NumPy Arrays
+
+# Splitting is reverse operation of Joining.
+# Joining merges multiple arrays into one and Splitting breaks one array into multiple.
+# We use array_split() for splitting arrays, we pass it the array we want to split and the number of splits.
+
+# try 58 - Split the array in 3 parts:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5, 6])
+
+newarr = np.array_split(arr, 3)
+
+print(newarr)
+# [array([1, 2]), array([3, 4]), array([5, 6])]
+
+# Note: The return value is a list containing three arrays.
+
+
+# If the array has less elements than required, it will adjust from the end accordingly.
+
+# try 59 - Split the array in 4 parts:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5, 6])
+
+newarr = np.array_split(arr, 4)
+
+print(newarr)
+# [array([1, 2]), array([3, 4]), array([5]), array([6])]
+
+
+# Note: We also have the method split() available but it will not adjust the elements when elements are less in source array for splitting like in example above, array_split() worked properly but split() would fail.
+
+
+# try 60 - Access the splitted arrays:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5, 6])
+
+newarr = np.array_split(arr, 3)
+
+print(newarr[0])
+print(newarr[1])
+print(newarr[2])
+
+
+# Splitting 2-D Arrays
+
+# Use the same syntax when splitting 2-D arrays.
+# Use the array_split() method, pass in the array you want to split and the number of splits you want to do.
+
+
+# try 61 - Split the 2-D array into three 2-D arrays.
+
+import numpy as np
+
+arr = np.array([[1, 2], [3, 4], [5, 6], [7, 8], [9, 10], [11, 12]])
+
+newarr = np.array_split(arr, 3)
+
+print(newarr)
+
+import numpy as np
+​
+arr = np.array([[1, 2], [3, 4], [5, 6], [7, 8], [9, 10], [11, 12]])
+​
+newarr = np.array_split(arr, 3)
+​
+print(newarr)
+#[array([[1, 2],
+#       [3, 4]]), array([[5, 6],
+#       [7, 8]]), array([[ 9, 10],
+#       [11, 12]])]
+
+
+
+# try 62 - Split the 2-D array into three 2-D arrays.
+
+import numpy as np
+
+arr = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12], [13, 14, 15], [16, 17, 18]])
+
+newarr = np.array_split(arr, 3)
+
+print(newarr)
+
+
+# The example below also returns three 2-D arrays, but they are split along the row (axis=1).
+
+# try 63 - Split the 2-D array into three 2-D arrays along rows.
+
+# spis dim 1 jsou sloupce - vybere cisla po sloupcich
+
+import numpy as np
+
+arr = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12], [13, 14, 15], [16, 17, 18]])
+
+newarr = np.array_split(arr, 3, axis=1)
+
+print(newarr)
+
+
+# try 63 - muj pokus
+
+import numpy as np
+
+#arr = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12], [13, 14, 15], [16, 17, 18]])
+arr = np.arange(1,19)
+arr = arr.reshape(6,3) # axis 1 jsou sloupce
+print(arr)
+#[[ 1  2  3]
+# [ 4  5  6]
+# [ 7  8  9]
+# [10 11 12]
+# [13 14 15]
+# [16 17 18]]
+
+newarr = np.array_split(arr, 3, axis=1)
+
+print(newarr)
+#[array([[ 1],
+#       [ 4],
+#       [ 7],
+#       [10],
+#       [13],
+#       [16]]), array([[ 2],
+#       [ 5],
+#       [ 8],
+#       [11],
+#       [14],
+#       [17]]), array([[ 3],
+#       [ 6],
+#       [ 9],
+#       [12],
+#       [15],
+#       [18]])]
+
+
+# try 63 - muj pokus s 3D
+import numpy as np
+
+arr = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12], [13, 14, 15], [16, 17, 18]])
+arr = np.arange(1,19)
+arr = arr.reshape(3,3,2)
+print(arr)
+
+newarr = np.array_split(arr, 3, axis=1)
+
+print(newarr)
+
+
+# An alternate solution is using hsplit() opposite of hstack()
+
+# try 64 - Use the hsplit() method to split the 2-D array into three 2-D arrays along rows.
+
+import numpy as np
+
+arr = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12], [13, 14, 15], [16, 17, 18]])
+
+newarr = np.hsplit(arr, 3)
+
+print(newarr)
+
+# Note: Similar alternates to vstack() and dstack() are available as vsplit() and dsplit().
+
+
+# try 65 - muj pokus s 3D
+import numpy as np
+
+arr = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12], [13, 14, 15], [16, 17, 18]])
+arr = np.arange(1,19)
+arr = arr.reshape(3,3,2)
+print(arr)
+
+newarr = np.hsplit(arr, 3)
+
+print(newarr)
+
+
+# try 66 - muj pokus s vstack / vsplit
+
+import numpy as np
+
+arr1 = np.array([1, 2, 3])
+arr2 = np.array([4, 5, 6])
+arr3 = np.array([7, 8, 9])
+arr4 = np.array([10, 11, 12])
+arr5 = np.array([13, 14, 15])
+arr6 = np.array([16, 17, 18])
+
+arr = np.vstack([arr1, arr2, arr3, arr4, arr5, arr6])
+print(arr)
+
+newarr = np.vsplit(arr, 3)
+
+print(newarr)
+
+# try 67 - muj pokus s vstack - u 1D je vstack/vsplit to same jako stack / split
+
+import numpy as np
+
+arr1 = np.array([1, 2, 3])
+arr2 = np.array([4, 5, 6])
+arr3 = np.array([7, 8, 9])
+arr4 = np.array([10, 11, 12])
+arr5 = np.array([13, 14, 15])
+arr6 = np.array([16, 17, 18])
+
+arr = np.stack([arr1, arr2, arr3, arr4, arr5, arr6])
+print(arr)
+
+newarr = np.split(arr, 3)
+
+print(newarr)
+
+
+
+# try 68 - tohle vubec nejde, jak bych to udelal do sloupcu?
+
+import numpy as np
+
+arr1 = np.array([1, 4, 7, 10, 13, 16])
+arr2 = np.array([2, 5, 8, 11, 14, 17])
+arr3 = np.array([3, 6, 9, 12, 15, 18])
+
+arr = np.column_stack([arr1, arr2, arr3])
+print(arr)
+#[[ 1  2  3]
+# [ 4  5  6]
+# [ 7  8  9]
+# [10 11 12]
+# [13 14 15]
+# [16 17 18]]
+
+newarr = np.hsplit(arr, 3)
+print(newarr)
+#[array([[ 1],
+#       [ 4],
+#       [ 7],
+#       [10],
+#       [13],
+#       [16]]), array([[ 2],
+#       [ 5],
+#       [ 8],
+#       [11],
+#       [14],
+#       [17]]), array([[ 3],
+#       [ 6],
+#       [ 9],
+#       [12],
+#       [15],
+#       [18]])]
+
+for newarrx in newarr:
+	print(newarrx.reshape(6))
+#[ 1  4  7 10 13 16]
+#[ 2  5  8 11 14 17]
+#[ 3  6  9 12 15 18]
+
+
+# Searching Arrays
+
+
+# You can search an array for a certain value, and return the indexes that get a match.
+# To search an array, use the where() method.
+
+
+# try 69 - Find the indexes where the value is 4:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5, 4, 4])
+
+x = np.where(arr == 4)
+
+print(x)
+#(array([3, 5, 6]),)
+print(x.__class__)
+#<class 'tuple'>
+
+# The example above will return a tuple: (array([3, 5, 6],)
+# Which means that the value 4 is present at index 3, 5, and 6.
+
+
+# try 70 - Find the indexes where the values are even:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5, 6, 7, 8])
+
+x = np.where(arr%2 == 0)
+
+print(x)
+#(array([1, 3, 5, 7]),)
+
+
+# try 71 - Find the indexes where the values are odd:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5, 6, 7, 8])
+
+x = np.where(arr%2 == 1)
+
+print(x)
+#(array([0, 2, 4, 6]),)
+
+
+
+# Search Sorted
+
+# There is a method called searchsorted() which performs a binary search in the array, and returns the index where the specified value would be inserted to maintain the search order.
+# The searchsorted() method is assumed to be used on sorted arrays.
+
+
+# try 72 - Find the indexes where the value 7 should be inserted:
+
+import numpy as np
+
+arr = np.array([6, 7, 8, 9])
+
+x = np.searchsorted(arr, 7)
+
+print(x)
+#1
+
+# Example explained: The number 7 should be inserted on index 1 to remain the sort order.
+# The method starts the search from the left and returns the first index where the number 7 is no longer larger than the next value.
+
+
+# Search From the Right Side
+
+# By default the left most index is returned, but we can give side='right' to return the right most index instead.
+
+# try 73 - Find the indexes where the value 7 should be inserted, starting from the right:
+
+import numpy as np
+
+arr = np.array([6, 7, 8, 9])
+
+x = np.searchsorted(arr, 7, side='right')
+
+print(x)
+#2
+
+# Example explained: The number 7 should be inserted on index 2 to remain the sort order.
+# The method starts the search from the right and returns the first index where the number 7 is no longer less than the next value.
+
+
+# Multiple Values
+
+# To search for more than one value, use an array with the specified values.
+
+# try 74 - Find the indexes where the values 2, 4, and 6 should be inserted:
+
+import numpy as np
+
+arr = np.array([1, 3, 5, 7])
+
+x = np.searchsorted(arr, [2, 4, 6])
+
+print(x)
+#[1 2 3]
+
+# The return value is an array: [1 2 3] containing the three indexes where 2, 4, 6 would be inserted in the original array to maintain the order.
+
+
+# Sorting Arrays
+
+# Sorting means putting elements in an ordered sequence.
+# Ordered sequence is any sequence that has an order corresponding to elements, like numeric or alphabetical, ascending or descending.
+# The NumPy ndarray object has a function called sort(), that will sort a specified array.
+
+# try 75 - Sort the array:
+
+import numpy as np
+
+arr = np.array([3, 2, 0, 1])
+
+print(np.sort(arr))
+
+#Note: This method returns a copy of the array, leaving the original array unchanged.
+
+# try 76 - Sort the array alphabetically:
+
+import numpy as np
+
+arr = np.array(['banana', 'cherry', 'apple'])
+
+print(np.sort(arr))
+
+
+# try 77 - Sort a boolean array:
+
+import numpy as np
+
+arr = np.array([True, False, True])
+
+print(np.sort(arr))
+#[False True True]
+
+# Sorting a 2-D Array
+# If you use the sort() method on a 2-D array, both arrays will be sorted:
+
+# try 78 - Sort a 2-D array:
+
+import numpy as np
+
+arr = np.array([[3, 2, 4], [5, 0, 1]])
+
+print(np.sort(arr))
+#[[2 3 4]
+# [0 1 5]]
+
+
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5, 6, 7, 8])
+
+x = np.where(arr%2 == 1)
+
+print(x)
+
+
+# Filtering Arrays
+
+# Getting some elements out of an existing array and creating a new array out of them is called filtering.
+# In NumPy, you filter an array using a boolean index list.
+# A boolean index list is a list of booleans corresponding to indexes in the array.
+# If the value at an index is True that element is contained in the filtered array, if the value at that index is False that element is excluded from the filtered array.
+
+
+# try 79 - Create an array from the elements on index 0 and 2:
+
+import numpy as np
+
+arr = np.array([41, 42, 43, 44])
+
+x = [True, False, True, False]
+
+newarr = arr[x]
+
+print(newarr)
+#[41 43]
+
+# The example above will return [41, 43], why?
+# Because the new array contains only the values where the filter array had the value True, in this case, index 0 and 2.
+
+
+# Creating the Filter Array
+# In the example above we hard-coded the True and False values, but the common use is to create a filter array based on conditions.
+
+
+# try 80 - Create a filter array that will return only values higher than 42:
+
+import numpy as np
+
+arr = np.array([41, 42, 43, 44])
+
+# Create an empty list
+filter_arr = []
+
+# go through each element in arr
+for element in arr:
+  # if the element is higher than 42, set the value to True, otherwise False:
+  if element > 42:
+    filter_arr.append(True)
+  else:
+    filter_arr.append(False)
+
+newarr = arr[filter_arr]
+
+print(filter_arr)
+print(newarr)
+#[False, False, True, True]
+#[43 44]
+
+
+
+# try 81 - Create a filter array that will return only even elements from the original array:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5, 6, 7])
+
+# Create an empty list
+filter_arr = []
+
+# go through each element in arr
+for element in arr:
+  # if the element is completely divisble by 2, set the value to True, otherwise False
+  if element % 2 == 0:
+    filter_arr.append(True)
+  else:
+    filter_arr.append(False)
+
+newarr = arr[filter_arr]
+
+print(filter_arr)
+print(newarr)
+#[False, True, False, True, False, True, False]
+#[2 4 6]
+
+
+
+# Creating Filter Directly From Array
+
+# The above example is quite a common task in NumPy and NumPy provides a nice way to tackle it.
+# We can directly substitute the array instead of the iterable variable in our condition and it will work just as we expect it to.
+
+# try 82 - Create a filter array that will return only values higher than 42:
+
+import numpy as np
+
+arr = np.array([41, 42, 43, 44])
+
+filter_arr = arr > 42
+
+newarr = arr[filter_arr]
+
+print(filter_arr)
+print(newarr)
+#[False False  True  True]
+#[43 44]
+
+
+# try 83 - Create a filter array that will return only even elements from the original array:
+
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5, 6, 7])
+
+filter_arr = arr % 2 == 0
+
+newarr = arr[filter_arr]
+
+print(filter_arr)
+print(newarr)
+#[False  True False  True False  True False]
+#[2 4 6]
+
+
+# try 84 - muj linspace filter Example:
+
+import numpy as np
+
+arr = np.linspace(40,44,5, dtype=int)
+arr = np.linspace(40,44,5).astype(int)
+arr = np.arange(40,45)
+
+filter_arr = arr >= 42
+
+newarr = arr[filter_arr]
+
+print(filter_arr)
+print(newarr)
+print(arr)

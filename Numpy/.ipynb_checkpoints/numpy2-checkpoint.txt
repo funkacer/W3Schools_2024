@@ -1,0 +1,238 @@
+# Generate Random Number
+
+# NumPy offers the random module to work with random numbers.
+
+# try 01 - Generate a random integer from 0 to 100:
+
+from numpy import random
+
+x = random.randint(100)
+
+print(x)
+
+
+# Generate Random Float
+
+# The random module's rand() method returns a random float between 0 and 1.
+
+# try 02 - Generate a random float from 0 to 1:
+
+from numpy import random
+
+x = random.rand()
+
+print(x)
+
+
+# Generate Random Array
+
+# In NumPy we work with arrays, and you can use the two methods from the above examples to make random arrays.
+
+# Integers
+# The randint() method takes a size parameter where you can specify the shape of an array.
+
+# try 03 - Generate a 1-D array containing 5 random integers from 0 to 100:
+
+from numpy import random
+
+x=random.randint(100, size=(5))
+
+print(x)
+
+
+# try 04 - Generate a 2-D array with 3 rows, each row containing 5 random integers from 0 to 100:
+
+from numpy import random
+
+x = random.randint(100, size=(3, 5))
+
+print(x)
+
+
+
+# Floats
+
+# The rand() method also allows you to specify the shape of the array.
+
+# try 05 - Generate a 1-D array containing 5 random floats:
+
+from numpy import random
+
+x = random.rand(5)
+
+print(x)
+
+
+# try 06 - Generate a 2-D array with 3 rows, each row containing 5 random numbers:
+
+from numpy import random
+
+x = random.rand(3, 5)
+
+print(x)
+
+
+# Generate Random Number From Array
+
+# The choice() method allows you to generate a random value based on an array of values.
+
+# The choice() method takes an array as a parameter and randomly returns one of the values.
+
+# try 07 - Return one of the values in an array:
+
+from numpy import random
+
+x = random.choice([3, 5, 7, 9])
+
+print(x)
+
+
+
+# The choice() method also allows you to return an array of values.
+
+# Add a size parameter to specify the shape of the array.
+
+# try 08 - Generate a 2-D array that consists of the values in the array parameter (3, 5, 7, and 9):
+
+from numpy import random
+
+x = random.choice([3, 5, 7, 9], size=(3, 5))
+
+print(x)
+
+
+
+# What is Data Distribution?
+
+# Data Distribution is a list of all possible values, and how often each value occurs.
+
+# Such lists are important when working with statistics and data science.
+
+# The random module offer methods that returns randomly generated data distributions.
+
+
+# Random Distribution
+
+# A random distribution is a set of random numbers that follow a certain probability density function.
+
+
+# NOTE: Probability Density Function: A function that describes a continuous probability. i.e. probability of all values in an array.
+
+
+
+We can generate random numbers based on defined probabilities using the choice() method of the random module.
+
+The choice() method allows us to specify the probability for each value.
+
+The probability is set by a number between 0 and 1, where 0 means that the value will never occur and 1 means that the value will always occur.
+
+# try 09 - Generate a 1-D array containing 100 values, where each value has to be 3, 5, 7 or 9.
+# The probability for the value to be 3 is set to be 0.1
+# The probability for the value to be 5 is set to be 0.3
+# The probability for the value to be 7 is set to be 0.6
+# The probability for the value to be 9 is set to be 0
+
+from numpy import random
+
+x = random.choice([3, 5, 7, 9], p=[0.1, 0.3, 0.6, 0.0], size=(100))
+
+print(x)
+
+# NOTE: The sum of all probability numbers should be 1.
+
+# Even if you run the example above 100 times, the value 9 will never occur.
+
+# You can return arrays of any shape and size by specifying the shape in the size parameter.
+
+# try 10 - Same example as above, but return a 2-D array with 3 rows, each containing 5 values.
+
+from numpy import random
+
+x = random.choice([3, 5, 7, 9], p=[0.1, 0.3, 0.6, 0.0], size=(3, 5))
+
+print(x)
+
+
+# Random Permutations of Elements
+
+# A permutation refers to an arrangement of elements. e.g. [3, 2, 1] is a permutation of [1, 2, 3] and vice-versa.
+
+# The NumPy Random module provides two methods for this: shuffle() and permutation().
+
+# Shuffling Arrays
+# Shuffle means changing arrangement of elements in-place. i.e. in the array itself.
+
+# try 11 - Randomly shuffle elements of following array:
+
+from numpy import random
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5])
+
+random.shuffle(arr)
+
+print(arr)
+
+
+# NOTE: The shuffle() method makes changes to the original array.
+
+# Generating Permutation of Arrays
+
+# try 12 - Generate a random permutation of elements of following array:
+
+from numpy import random
+import numpy as np
+
+arr = np.array([1, 2, 3, 4, 5])
+
+print(random.permutation(arr))
+
+# NOTE: The permutation() method returns a re-arranged array (and leaves the original array un-changed).
+
+
+
+# Visualize Distributions With Seaborn
+
+# Seaborn is a library that uses Matplotlib underneath to plot graphs. It will be used to visualize random distributions.
+
+# pip install seaborn
+
+
+# Distplots
+
+# Distplot stands for distribution plot, it takes as input an array and plots a curve corresponding to the distribution of points in the array.
+
+
+# Import Matplotlib
+
+# Import the pyplot object of the Matplotlib module in your code using the following statement:
+
+import matplotlib.pyplot as plt
+
+# You can learn about the Matplotlib module in our Matplotlib Tutorial. https://www.w3schools.com/python/matplotlib_intro.asp
+
+
+# Import Seaborn
+
+# Import the Seaborn module in your code using the following statement:
+
+import seaborn as sns
+
+# try 13 - Plotting a Distplot
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.distplot([0, 1, 2, 3, 4, 5])
+
+plt.show()
+
+
+# try 14 - Plotting a Distplot Without the Histogram
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.distplot([0, 1, 2, 3, 4, 5], hist=False)
+
+plt.show()
