@@ -383,3 +383,478 @@ SELECT CustomerName, ContactName, Address
 FROM Customers
 WHERE Address IS NOT NULL;
 
+
+
+The SQL SELECT TOP Clause
+- The SELECT TOP clause is used to specify the number of records to return.
+- The SELECT TOP clause is useful on large tables with thousands of records. Returning a large number of records can impact performance.
+
+# Select only the first 3 records of the Customers table:
+SELECT TOP 3 * FROM Customers;
+
+Note: Not all database systems support the SELECT TOP clause. MySQL supports the LIMIT clause to select a limited number of records, while Oracle uses FETCH FIRST n ROWS ONLY and ROWNUM.
+
+
+SQL Server / MS Access Syntax:
+
+SELECT TOP number|percent column_name(s)
+FROM table_name
+WHERE condition;
+
+MySQL Syntax:
+
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+LIMIT number;
+
+Oracle 12 Syntax:
+
+SELECT column_name(s)
+FROM table_name
+ORDER BY column_name(s)
+FETCH FIRST number ROWS ONLY;
+
+Older Oracle Syntax:
+
+SELECT column_name(s)
+FROM table_name
+WHERE ROWNUM <= number;
+
+Older Oracle Syntax (with ORDER BY):
+
+SELECT *
+FROM (SELECT column_name(s) FROM table_name ORDER BY column_name(s))
+WHERE ROWNUM <= number;
+
+
+LIMIT
+- The following SQL statement shows the equivalent example for MySQL:
+
+# Select the first 3 records of the Customers table:
+SELECT * FROM Customers
+LIMIT 3;
+
+
+FETCH FIRST
+- The following SQL statement shows the equivalent example for Oracle:
+
+# Select the first 3 records of the Customers table:
+SELECT * FROM Customers
+FETCH FIRST 3 ROWS ONLY;
+
+SQL TOP PERCENT Example
+- The following SQL statement selects the first 50% of the records from the "Customers" table (for SQL Server/MS Access):
+
+# Example:
+SELECT TOP 50 PERCENT * FROM Customers;
+
+# The following SQL statement shows the equivalent example for Oracle:
+SELECT * FROM Customers
+FETCH FIRST 50 PERCENT ROWS ONLY;
+
+ADD a WHERE CLAUSE
+- The following SQL statement selects the first three records from the "Customers" table, where the country is "Germany" (for SQL Server/MS Access):
+
+# Example:
+SELECT TOP 3 * FROM Customers
+WHERE Country='Germany';
+
+# The following SQL statement shows the equivalent example for MySQL:
+SELECT * FROM Customers
+WHERE Country='Germany'
+LIMIT 3;
+
+# The following SQL statement shows the equivalent example for Oracle:
+SELECT * FROM Customers
+WHERE Country='Germany'
+FETCH FIRST 3 ROWS ONLY;
+
+
+ADD the ORDER BY Keyword
+- Add the ORDER BY keyword when you want to sort the result, and return the first 3 records of the sorted result.
+
+For SQL Server and MS Access:
+
+# Sort the result reverse alphabetically by CustomerName, and return the first 3 records:
+SELECT TOP 3 * FROM Customers
+ORDER BY CustomerName DESC;
+
+
+# The following SQL statement shows the equivalent example for MySQL:
+SELECT * FROM Customers
+ORDER BY CustomerName DESC
+LIMIT 3;
+
+# The following SQL statement shows the equivalent example for Oracle:
+SELECT * FROM Customers
+ORDER BY CustomerName DESC
+FETCH FIRST 3 ROWS ONLY;
+
+
+The SQL MIN() and MAX() Functions
+- The MIN() function returns the smallest value of the selected column.
+- The MAX() function returns the largest value of the selected column.
+
+# Find the lowest price:
+SELECT MIN(Price)
+FROM Products;
+
+#Find the highest price:
+SELECT MAX(Price)
+FROM Products;
+
+
+Syntax
+SELECT MIN(column_name)
+FROM table_name
+WHERE condition;
+
+SELECT MAX(column_name)
+FROM table_name
+WHERE condition;
+
+
+Set Column Name (Alias)
+- When you use MIN() or MAX(), the returned column will be named MIN(field) or MAX(field) by default. To give the column a new name, use the AS keyword:
+
+# Example:
+SELECT MIN(Price) AS SmallestPrice
+FROM Products;
+
+
+
+The SQL COUNT() Function
+- The COUNT() function returns the number of rows that matches a specified criterion.
+
+# Find the total number of products in the Products table:
+SELECT COUNT(*)
+FROM Products;
+
+
+Syntax
+SELECT COUNT(column_name)
+FROM table_name
+WHERE condition;
+
+
+Add a Where Clause
+- You can add a WHERE clause to specify conditions:
+
+# Find the number of products where Price is higher than 20:
+SELECT COUNT(ProductID)
+FROM Products
+WHERE Price > 20;
+
+
+Specify Column
+- You can specify a column name instead of the asterix symbol (*).
+- If you specify a column instead of (*), NULL values will not be counted.
+
+# Find the number of products where the ProductName is not null:
+SELECT COUNT(ProductName)
+FROM Products;
+
+
+Ignore Duplicates
+- You can ignore duplicates by using the DISTINCT keyword in the COUNT function.
+- If DISTINCT is specified, rows with the same value for the specified column will be counted as one.
+
+# How many different prices are there in the Products table:
+SELECT COUNT(DISTINCT Price)
+FROM Products;
+
+
+Use an Alias
+- Give the counted column a name by using the AS keyword.
+
+# Name the column "number of records":
+SELECT COUNT(*) AS [number of records]
+FROM Products;
+
+
+
+The SQL SUM() Function
+- The SUM() function returns the total sum of a numeric column.
+
+# Return the sum of all Quantity fields in the OrderDetails table:
+SELECT SUM(Quantity)
+FROM OrderDetails;
+
+
+Syntax
+SELECT SUM(column_name)
+FROM table_name
+WHERE condition;
+
+
+Add a Where Clause
+- You can add a WHERE clause to specify conditions:
+
+# Return the number of orders made for the product with ProductID 11:
+SELECT SUM(Quantity)
+FROM OrderDetails
+WHERE ProductId = 11;
+
+
+Use an Alias
+- Give the summarized column a name by using the AS keyword.
+
+# Name the column "total":
+SELECT SUM(Quantity) AS total
+FROM OrderDetails;
+
+
+SUM() With an Expression
+- The parameter inside the SUM() function can also be an expression.
+- If we assume that each product in the OrderDetails column costs 10 dollars, we can find the total earnings in dollars by multiply each quantity with 10:
+
+# Use an expression inside the SUM() function:
+SELECT SUM(Quantity * 10)
+FROM OrderDetails;
+
+
+We can also join the OrderDetails table to the Products table to find the actual amount, instead of assuming it is 10 dollars:
+
+# Join OrderDetails with Products, and use SUM() to find the total amount:
+SELECT SUM(Price * Quantity)
+FROM OrderDetails
+LEFT JOIN Products ON OrderDetails.ProductID = Products.ProductID;
+
+
+
+
+The SQL AVG() Function
+- The AVG() function returns the average value of a numeric column.
+
+# Find the average price of all products:
+SELECT AVG(Price)
+FROM Products;
+
+Note: NULL values are ignored.
+
+
+Syntax
+SELECT AVG(column_name)
+FROM table_name
+WHERE condition;
+
+
+
+Add a Where Clause
+- You can add a WHERE clause to specify conditions:
+
+# Return the average price of products in category 1:
+SELECT AVG(Price)
+FROM Products
+WHERE CategoryID = 1;
+
+
+Use an Alias
+- Give the AVG column a name by using the AS keyword.
+
+# Name the column "average price":
+SELECT AVG(Price) AS [average price]
+FROM Products;
+
+
+Higher Than Average
+- To list all records with a higher price than average, we can use the AVG() function in a sub query:
+
+# Return all products with a higher price than the average price:
+SELECT * FROM Products
+WHERE price > (SELECT AVG(price) FROM Products);
+
+
+
+The SQL LIKE Operator
+- The LIKE operator is used in a WHERE clause to search for a specified pattern in a column.
+
+There are two wildcards often used in conjunction with the LIKE operator:
+- The percent sign % represents zero, one, or multiple characters
+- The underscore sign _ represents one, single character
+You will learn more about wildcards in the next chapter.
+
+# Select all customers that starts with the letter "a":
+SELECT * FROM Customers
+WHERE CustomerName LIKE 'a%';
+
+
+Syntax
+SELECT column1, column2, ...
+FROM table_name
+WHERE columnN LIKE pattern;
+
+
+The _ Wildcard
+- The _ wildcard represents a single character.
+- It can be any character or number, but each _ represents one, and only one, character.
+
+# Return all customers from a city that starts with 'L' followed by one wildcard character, then 'nd' and then two wildcard characters:
+SELECT * FROM Customers
+WHERE city LIKE 'L_nd__';
+
+
+The % Wildcard
+- The % wildcard represents any number of characters, even zero characters.
+
+# Return all customers from a city that contains the letter 'L':
+SELECT * FROM Customers
+WHERE city LIKE '%L%';
+
+
+Starts With
+- To return records that starts with a specific letter or phrase, add the % at the end of the letter or phrase.
+
+# Return all customers that starts with 'La':
+SELECT * FROM Customers
+WHERE CustomerName LIKE 'La%';
+
+
+Tip: You can also combine any number of conditions using AND or OR operators.
+
+# Return all customers that starts with 'a' or starts with 'b':
+SELECT * FROM Customers
+WHERE CustomerName LIKE 'a%' OR CustomerName LIKE 'b%';
+
+
+Ends With
+- To return records that ends with a specific letter or phrase, add the % at the beginning of the letter or phrase.
+
+# Return all customers that ends with 'a':
+SELECT * FROM Customers
+WHERE CustomerName LIKE '%a';
+
+
+Tip: You can also combine "starts with" and "ends with":
+
+# Return all customers that starts with "b" and ends with "s":
+
+SELECT * FROM Customers
+WHERE CustomerName LIKE 'b%s';
+
+
+Contains
+- To return records that contains a specific letter or phrase, add the % both before and after the letter or phrase.
+
+# Return all customers that contains the phrase 'or'
+SELECT * FROM Customers
+WHERE CustomerName LIKE '%or%';
+
+
+Combine Wildcards
+- Any wildcard, like % and _ , can be used in combination with other wildcards.
+
+# Return all customers that starts with "a" and are at least 3 characters in length:
+SELECT * FROM Customers
+WHERE CustomerName LIKE 'a__%';
+
+# Return all customers that have "r" in the second position:
+SELECT * FROM Customers
+WHERE CustomerName LIKE '_r%';
+
+
+Without Wildcard
+- If no wildcard is specified, the phrase has to have an exact match to return a result.
+
+# Return all customers from Spain:
+SELECT * FROM Customers
+WHERE Country LIKE 'Spain';
+
+
+
+
+SQL Wildcard Characters
+- A wildcard character is used to substitute one or more characters in a string.
+- Wildcard characters are used with the LIKE operator. The LIKE operator is used in a WHERE clause to search for a specified pattern in a column.
+
+# Return all customers that starts with the letter 'a':
+SELECT * FROM Customers
+WHERE CustomerName LIKE 'a%';
+
+
+Wildcard Characters
+Symbol	Description
+%	Represents zero or more characters
+_	Represents a single character
+[]	Represents any single character within the brackets *
+^	Represents any character not in the brackets *
+-	Represents any single character within the specified range *
+{}	Represents any escaped character **
+
+* Not supported in PostgreSQL and MySQL databases.
+** Supported only in Oracle databases.
+
+
+Using the % Wildcard
+- The % wildcard represents any number of characters, even zero characters.
+
+# Return all customers that ends with the pattern 'es':
+SELECT * FROM Customers
+WHERE CustomerName LIKE '%es';
+
+# Return all customers that contains the pattern 'mer':
+SELECT * FROM Customers
+WHERE CustomerName LIKE '%mer%';
+
+
+Using the _ Wildcard
+- The _ wildcard represents a single character.
+- It can be any character or number, but each _ represents one, and only one, character.
+
+# Return all customers with a City starting with any character, followed by "ondon":
+SELECT * FROM Customers
+WHERE City LIKE '_ondon';
+
+# Return all customers with a City starting with "L", followed by any 3 characters, ending with "on":
+SELECT * FROM Customers
+WHERE City LIKE 'L___on';
+
+
+Using the [] Wildcard
+- The [] wildcard returns a result if any of the characters inside gets a match.
+
+# Return all customers starting with either "b", "s", or "p":
+SELECT * FROM Customers
+WHERE CustomerName LIKE '[bsp]%';
+
+
+Using the - Wildcard
+- The - wildcard allows you to specify a range of characters inside the [] wildcard.
+
+# Return all customers starting with "a", "b", "c", "d", "e" or "f":
+SELECT * FROM Customers
+WHERE CustomerName LIKE '[a-f]%';
+
+
+Combine Wildcards
+- Any wildcard, like % and _ , can be used in combination with other wildcards.
+
+# Return all customers that starts with "a" and are at least 3 characters in length:
+SELECT * FROM Customers
+WHERE CustomerName LIKE 'a__%';
+
+# Return all customers that have "r" in the second position:
+SELECT * FROM Customers
+WHERE CustomerName LIKE '_r%';
+
+
+Without Wildcard
+- If no wildcard is specified, the phrase has to have an exact match to return a result.
+
+# Return all customers from Spain:
+SELECT * FROM Customers
+WHERE Country LIKE 'Spain';
+
+
+Microsoft Access Wildcards
+- The Microsoft Access Database has some other wildcards:
+
+Symbol	Description	Example
+*	Represents zero or more characters	bl* finds bl, black, blue, and blob
+?	Represents a single character	h?t finds hot, hat, and hit
+[]	Represents any single character within the brackets	h[oa]t finds hot and hat, but not hit
+!	Represents any character not in the brackets	h[!oa]t finds hit, but not hot and hat
+-	Represents any single character within the specified range	c[a-b]t finds cat and cbt
+#	Represents any single numeric character	2#5 finds 205, 215, 225, 235, 245, 255, 265, 275, 285, and 295
+
