@@ -1,0 +1,279 @@
+The SQL CREATE DATABASE Statement
+- The CREATE DATABASE statement is used to create a new SQL database.
+
+Syntax
+CREATE DATABASE databasename;
+
+CREATE DATABASE Example
+
+# The following SQL statement creates a database called "testDB":
+CREATE DATABASE testDB;
+
+Tip: Make sure you have admin privilege before creating any database. Once a database is created, you can check it in the list of databases with the following SQL command: SHOW DATABASES;
+
+
+
+The SQL DROP DATABASE Statement
+- The DROP DATABASE statement is used to drop an existing SQL database.
+
+Syntax
+DROP DATABASE databasename;
+
+Note: Be careful before dropping a database. Deleting a database will result in loss of complete information stored in the database!
+
+DROP DATABASE Example
+
+# The following SQL statement drops the existing database "testDB":
+DROP DATABASE testDB;
+
+Tip: Make sure you have admin privilege before dropping any database. Once a database is dropped, you can check it in the list of databases with the following SQL command: SHOW DATABASES;
+
+
+
+The SQL BACKUP DATABASE Statement
+- The BACKUP DATABASE statement is used in SQL Server to create a full back up of an existing SQL database.
+
+Syntax
+BACKUP DATABASE databasename
+TO DISK = 'filepath';
+
+The SQL BACKUP WITH DIFFERENTIAL Statement
+- A differential back up only backs up the parts of the database that have changed since the last full database backup.
+
+Syntax
+BACKUP DATABASE databasename
+TO DISK = 'filepath'
+WITH DIFFERENTIAL;
+
+BACKUP DATABASE Example
+
+# The following SQL statement creates a full back up of the existing database "testDB" to the D disk:
+BACKUP DATABASE testDB
+TO DISK = 'D:\backups\testDB.bak';
+
+Tip: Always back up the database to a different drive than the actual database. Then, if you get a disk crash, you will not lose your backup file along with the database.
+
+
+
+BACKUP WITH DIFFERENTIAL Example
+
+# The following SQL statement creates a differential back up of the database "testDB":
+BACKUP DATABASE testDB
+TO DISK = 'D:\backups\testDB.bak'
+WITH DIFFERENTIAL;
+
+Tip: A differential back up reduces the back up time (since only the changes are backed up).
+
+
+
+The SQL CREATE TABLE Statement
+- The CREATE TABLE statement is used to create a new table in a database.
+- The column parameters specify the names of the columns of the table.
+- The datatype parameter specifies the type of data the column can hold (e.g. varchar, integer, date, etc.).
+- Tip: For an overview of the available data types, go to our complete Data Types Reference.
+
+Syntax
+CREATE TABLE table_name (
+    column1 datatype,
+    column2 datatype,
+    column3 datatype,
+   ....
+);
+
+
+SQL CREATE TABLE Example
+
+#The following example creates a table called "Persons" that contains five columns: PersonID, LastName, FirstName, Address, and City:
+CREATE TABLE Persons (
+    PersonID int,
+    LastName varchar(255),
+    FirstName varchar(255),
+    Address varchar(255),
+    City varchar(255)
+);
+
+
+- The PersonID column is of type int and will hold an integer.
+- The LastName, FirstName, Address, and City columns are of type varchar and will hold characters, and the maximum length for these fields is 255 characters.
+
+The empty "Persons" table will now look like this:
+
+udělej query limit 3
+
+Tip: The empty "Persons" table can now be filled with data with the SQL INSERT INTO statement.
+
+
+
+Create Table Using Another Table
+- A copy of an existing table can also be created using CREATE TABLE.
+- The new table gets the same column definitions. All columns or specific columns can be selected.
+- If you create a new table using an existing table, the new table will be filled with the existing values from the old table.
+
+Syntax
+CREATE TABLE new_table_name AS
+    SELECT column1, column2,...
+    FROM existing_table_name
+    WHERE ....;
+
+# The following SQL creates a new table called "TestTables" (which is a copy of the "Customers" table): 
+CREATE TABLE TestTable AS
+SELECT customername, contactname
+FROM customers;
+
+
+
+
+The SQL DROP TABLE Statement
+- The DROP TABLE statement is used to drop an existing table in a database.
+
+Syntax
+DROP TABLE table_name;
+
+Note: Be careful before dropping a table. Deleting a table will result in loss of complete information stored in the table!
+
+SQL DROP TABLE Example
+
+# The following SQL statement drops the existing table "Shippers":
+DROP TABLE Shippers;
+
+
+SQL TRUNCATE TABLE
+- The TRUNCATE TABLE statement is used to delete the data inside a table, but not the table itself.
+
+Syntax
+TRUNCATE TABLE table_name;
+
+
+
+
+
+SQL ALTER TABLE Statement
+- The ALTER TABLE statement is used to add, delete, or modify columns in an existing table.
+- The ALTER TABLE statement is also used to add and drop various constraints on an existing table.
+
+ALTER TABLE - ADD Column
+- To add a column in a table, use the following syntax:
+
+ALTER TABLE table_name
+ADD column_name datatype;
+
+
+# The following SQL adds an "Email" column to the "Customers" table:
+ALTER TABLE Customers
+ADD Email varchar(255);
+
+
+
+ALTER TABLE - DROP COLUMN
+- To delete a column in a table, use the following syntax (notice that some database systems don't allow deleting a column):
+
+ALTER TABLE table_name
+DROP COLUMN column_name;
+
+
+# The following SQL deletes the "Email" column from the "Customers" table:
+ALTER TABLE Customers
+DROP COLUMN Email;
+
+
+ALTER TABLE - RENAME COLUMN
+- To rename a column in a table, use the following syntax:
+
+ALTER TABLE table_name
+RENAME COLUMN old_name to new_name;
+
+- To rename a column in a table in SQL Server, use the following syntax:
+
+SQL Server:
+EXEC sp_rename 'table_name.old_name',  'new_name', 'COLUMN';
+
+
+
+ALTER TABLE - ALTER/MODIFY DATATYPE
+- To change the data type of a column in a table, use the following syntax:
+
+SQL Server / MS Access:
+ALTER TABLE table_name
+ALTER COLUMN column_name datatype;
+
+My SQL / Oracle (prior version 10G):
+ALTER TABLE table_name
+MODIFY COLUMN column_name datatype;
+
+Oracle 10G and later:
+ALTER TABLE table_name
+MODIFY column_name datatype;
+
+
+SQL ALTER TABLE Example
+- Look at the "Persons" table:
+
+udělej query limit 3
+
+
+Now we want to add a column named "DateOfBirth" in the "Persons" table.
+
+# We use the following SQL statement:
+ALTER TABLE Persons
+ADD DateOfBirth date;
+
+Notice that the new column, "DateOfBirth", is of type date and is going to hold a date. The data type specifies what type of data the column can hold. For a complete reference of all the data types available in MS Access, MySQL, and SQL Server, go to our complete Data Types reference.
+
+The "Persons" table will now look like this:
+
+udělej query limit 3
+
+
+Change Data Type Example
+- Now we want to change the data type of the column named "DateOfBirth" in the "Persons" table.
+
+# We use the following SQL statement:
+ALTER TABLE Persons
+ALTER COLUMN DateOfBirth year;
+
+Notice that the "DateOfBirth" column is now of type year and is going to hold a year in a two- or four-digit format.
+
+
+
+DROP COLUMN Example
+- Next, we want to delete the column named "DateOfBirth" in the "Persons" table.
+
+# We use the following SQL statement:
+ALTER TABLE Persons
+DROP COLUMN DateOfBirth;
+
+The "Persons" table will now look like this:
+
+udělej query limit 3
+
+
+
+SQL Constraints
+- SQL constraints are used to specify rules for data in a table.
+
+SQL Create Constraints
+- Constraints can be specified when the table is created with the CREATE TABLE statement, or after the table is created with the ALTER TABLE statement.
+
+Syntax
+CREATE TABLE table_name (
+    column1 datatype constraint,
+    column2 datatype constraint,
+    column3 datatype constraint,
+    ....
+);
+
+
+SQL Constraints
+- SQL constraints are used to specify rules for the data in a table.
+- Constraints are used to limit the type of data that can go into a table. This ensures the accuracy and reliability of the data in the table. If there is any violation between the constraint and the data action, the action is aborted.
+- Constraints can be column level or table level. Column level constraints apply to a column, and table level constraints apply to the whole table.
+
+The following constraints are commonly used in SQL:
+
+NOT NULL - Ensures that a column cannot have a NULL value
+UNIQUE - Ensures that all values in a column are different
+PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+FOREIGN KEY - Prevents actions that would destroy links between tables
+CHECK - Ensures that the values in a column satisfies a specific condition
+DEFAULT - Sets a default value for a column if no value is specified
+CREATE INDEX - Used to create and retrieve data from the database very quickly
